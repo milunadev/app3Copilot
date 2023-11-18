@@ -24,8 +24,11 @@ source:
 stages:
   - name: test
     test_commands: 
+      - export SERVICE_URL=$(aws elbv2 describe-load-balancers --names app3-t-Publi-dLvD85G1HMIM --query 'LoadBalancers[0].DNSName' --output text)
+      - echo "Service URL: $SERVICE_URL"
+      - echo "ls $CODEBUILD_SRC_DIR/copilot/pipelines/app3copilot-main"
       - echo "Ejecutando pruebas"
-      - ./test_website.sh
+      - ./$CODEBUILD_SRC_DIR/copilot/pipelines/app3copilot-main/test_website.sh $SERVICE_URL
     # requires_approval: true
     # test_commands: [echo 'running tests', make test]
 

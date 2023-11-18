@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # URL de tu servicio
-URL="http://tu-servicio.com"
+URL=$1
 
 # Descarga el contenido de la página
 content=$(curl -s $URL)
